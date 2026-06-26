@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dargs International 2026 American road trip itinerary microsite.">
+<title>DARGS INTERNATIONAL — Six Men. One Bad Idea.</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg:       #0B1A10;
+    --bg2:      #0F2015;
+    --card:     #152A1A;
+    --card2:    #1B3321;
+    --card3:    #213D28;
+    --green:    #2D6040;
+    --green2:   #3D7D52;
+    --sage:     #7AB88A;
+    --cream:    #EDE5C4;
+    --cream2:   #D4CCB0;
+    --cream3:   #A89F87;
+    --muted:    #6B6454;
+    --divider:  rgba(237,229,196,0.08);
+    --divider2: rgba(237,229,196,0.15);
+    --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--cream); font-family: var(--font); line-height: 1.6; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--green2); border-radius: 0; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(11,26,16,0.96); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--divider2);
+  }
+  .nav-inner {
+    max-width: 1400px; margin: 0 auto; padding: 0 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px; gap: 12px;
+  }
+  .nav-brand {
+    font-weight: 700; font-size: 13px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--cream);
+  }
+  .nav-brand span { color: var(--sage); }
+  .nav-links { display: flex; gap: 2px; flex-wrap: wrap; }
+  .nav-links a {
+    color: var(--cream3); text-decoration: none; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 10px;
+    transition: color 0.2s; border-bottom: 2px solid transparent; border-radius: 0;
+  }
+  .nav-links a:hover { color: var(--cream); border-bottom-color: var(--sage); }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--green); padding: 8px 0; overflow: hidden;
+    white-space: nowrap; margin-top: 56px;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 18s linear infinite;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--cream);
+  }
+  @keyframes ticker {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 72px 32px 64px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--divider2);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: 'DARGS';
+    position: absolute; right: -20px; top: -20px;
+    font-size: clamp(140px, 22vw, 280px); font-weight: 800;
+    color: rgba(45,96,64,0.12); letter-spacing: -0.05em;
+    line-height: 1; pointer-events: none; user-select: none;
+    text-transform: uppercase;
+  }
+  .hero-inner { max-width: 1400px; margin: 0 auto; position: relative; }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before { content: ''; width: 32px; height: 2px; background: var(--sage); }
+  .hero-h1 {
+    font-size: clamp(48px, 9vw, 116px); font-weight: 800; line-height: 0.92;
+    letter-spacing: -0.03em; text-transform: uppercase; margin-bottom: 8px;
+    color: var(--cream);
+  }
+  .hero-h1 .line2 { color: var(--sage); display: block; }
+  .hero-h1 .line3 {
+    display: block; font-size: clamp(18px, 3vw, 36px); font-weight: 300;
+    letter-spacing: 0.02em; color: var(--cream2); margin-top: 8px;
+    font-style: italic; text-transform: none;
+  }
+  .hero-sub {
+    font-size: 13px; font-weight: 400; color: var(--cream3); margin: 24px 0 36px;
+    letter-spacing: 0.08em; max-width: 520px; line-height: 1.6;
+    border-left: 3px solid var(--sage); padding-left: 16px;
+  }
+  .hero-sub strong { color: var(--cream); }
+  .names-strip {
+    display: flex; gap: 0; flex-wrap: wrap;
+    border: 1px solid var(--divider2); width: fit-content; margin-bottom: 40px;
+  }
+  .name-cell {
+    padding: 12px 22px; font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; border-right: 1px solid var(--divider2);
+    color: var(--cream2); transition: background 0.2s, color 0.2s;
+  }
+  .name-cell:last-child { border-right: none; }
+  .name-cell:hover { background: var(--card2); color: var(--cream); }
+  .hero-stats {
+    display: flex; gap: 0; border: 1px solid var(--divider2);
+    width: fit-content; flex-wrap: wrap;
+  }
+  .h-stat {
+    padding: 18px 28px; border-right: 1px solid var(--divider2);
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .h-stat:last-child { border-right: none; }
+  .h-stat-val { font-size: 28px; font-weight: 800; color: var(--cream); line-height: 1; }
+  .h-stat-key { font-size: 9px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); }
+
+  /* ── ROUTE MAP ── */
+  .route-bar {
+    background: var(--card); border-top: 1px solid var(--divider2); border-bottom: 1px solid var(--divider2);
+    padding: 16px 32px; display: flex; align-items: center; gap: 8px;
+    flex-wrap: wrap; font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; overflow: hidden;
+  }
+  .route-bar-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; width: 100%; }
+  .r-stop { color: var(--cream); }
+  .r-arrow { color: var(--sage); font-size: 14px; }
+  .r-note { font-size: 9px; color: var(--muted); margin-left: 8px; }
+
+  /* ── SECTIONS ── */
+  .page-section { max-width: 1400px; margin: 0 auto; padding: 72px 32px; scroll-margin-top: 56px; }
+  .sec-label {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.35em; text-transform: uppercase; color: var(--sage);
+  }
+  .sec-label-num {
+    background: var(--green); color: var(--cream); width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800;
+    flex-shrink: 0;
+  }
+  .sec-title {
+    font-size: clamp(32px, 5vw, 64px); font-weight: 800; letter-spacing: -0.03em;
+    text-transform: uppercase; line-height: 1; margin-bottom: 8px; color: var(--cream);
+  }
+  .sec-title em { color: var(--sage); font-style: normal; }
+  .sec-sub { font-size: 12px; color: var(--cream3); letter-spacing: 0.06em; margin-bottom: 40px; }
+  .h-rule { height: 2px; background: var(--divider2); margin-bottom: 40px; }
+  .h-rule-sage { height: 2px; background: var(--sage); width: 48px; margin-bottom: 40px; }
+
+  /* ── TIMELINE GRID ── */
+  .tl-grid { display: grid; grid-template-columns: repeat(6,1fr); border: 1px solid var(--divider2); }
+  @media(max-width:900px){ .tl-grid { grid-template-columns: repeat(3,1fr); } }
+  @media(max-width:500px){ .tl-grid { grid-template-columns: repeat(2,1fr); } }
+  .tl-cell {
+    padding: 24px 16px; text-align: center; border-right: 1px solid var(--divider2);
+    text-decoration: none; color: inherit; background: var(--card); transition: background 0.25s;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .tl-cell:last-child { border-right: none; }
+  .tl-cell:hover { background: var(--card2); }
+  .tl-n { font-size: 9px; font-weight: 800; letter-spacing: 0.35em; color: var(--sage); text-transform: uppercase; }
+  .tl-icon { font-size: 22px; }
+  .tl-name { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+  .tl-cell:hover .tl-name { color: var(--sage); }
+  .tl-date { font-size: 10px; color: var(--cream3); }
+  .tl-nights { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; color: var(--sage); text-transform: uppercase; }
+
+  /* ── TIP ── */
+  .tip {
+    border-left: 3px solid var(--sage); padding: 16px 20px; margin-bottom: 32px;
+    background: rgba(122,184,138,0.05); font-size: 12px; color: var(--cream3); line-height: 1.7;
+  }
+  .tip strong { color: var(--cream); }
+  .tip em { color: var(--sage); font-style: normal; font-weight: 700; }
+
+  /* ── DRIVE MARKER ── */
+  .drive-bar {
+    background: var(--card); border-top: 1px solid var(--divider); border-bottom: 1px solid var(--divider);
+    padding: 12px 32px; display: flex; justify-content: center;
+  }
+  .drive-bar-inner {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .drive-from { color: var(--cream); }
+  .drive-arr { color: var(--sage); font-size: 16px; }
+  .drive-info { color: var(--cream3); }
+  .drive-dot { width: 3px; height: 3px; background: var(--divider2); border-radius: 50%; }
+
+  /* ── FULL DIVIDER ── */
+  .divider { height: 1px; background: var(--divider); }
+
+  /* ── TWO COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 0; }
+  @media(max-width:800px){ .two-col { grid-template-columns: 1fr; } }
+  .panel { background: var(--card); padding: 32px; border: 1px solid var(--divider); }
+  .panel-title {
+    font-size: 9px; font-weight: 800; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 20px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--divider2);
+  }
+
+  /* ── ACTIVITIES ── */
+  .act-item { display: flex; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--divider); }
+  .act-item:last-child { border-bottom: none; }
+  .act-n { font-size: 20px; font-weight: 800; color: rgba(122,184,138,0.2); min-width: 28px; line-height: 1.1; }
+  .act-name { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 3px; }
+  .act-desc { font-size: 11px; color: var(--cream3); line-height: 1.5; }
+
+  /* ── HOTELS ── */
+  .hotel-item {
+    display: grid; grid-template-columns: 1fr auto; gap: 8px 16px;
+    padding: 16px 0; border-bottom: 1px solid var(--divider);
+    align-items: start;
+  }
+  .hotel-item:last-child { border-bottom: none; }
+  .hotel-name { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+  .hotel-area { font-size: 10px; color: var(--cream3); margin-top: 2px; letter-spacing: 0.05em; }
+  .hotel-note { font-size: 10px; color: var(--muted); margin-top: 4px; line-height: 1.4; grid-column: 1/-1; }
+  .hotel-price { font-size: 24px; font-weight: 800; color: var(--sage); text-align: right; line-height: 1; }
+  .hotel-price-sub { font-size: 9px; color: var(--muted); letter-spacing: 0.1em; text-align: right; }
+  .hotel-btn {
+    grid-column: 1/-1; display: block; text-align: center; padding: 9px 12px;
+    font-size: 9px; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase;
+    border: 2px solid var(--divider2); color: var(--cream2); text-decoration: none;
+    transition: all 0.2s; margin-top: 4px;
+  }
+  .hotel-btn:hover { background: var(--sage); color: var(--bg); border-color: var(--sage); }
+
+  /* ── AIRBNB CARDS ── */
+  .accom-note {
+    font-size: 10px; color: var(--muted); border-left: 2px solid var(--sage);
+    padding-left: 12px; margin-bottom: 16px; line-height: 1.6;
+  }
+  .accom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  @media(max-width:550px){ .accom-grid { grid-template-columns: 1fr; } }
+  .accom-card {
+    border: 1px solid var(--divider); background: var(--card2); padding: 12px 14px;
+    display: flex; flex-direction: column; gap: 8px; transition: border-color 0.2s;
+  }
+  .accom-card:hover { border-color: var(--divider2); }
+  .accom-top { display: flex; align-items: center; gap: 10px; }
+  .accom-badge {
+    width: 22px; height: 22px; background: var(--green); display: flex; align-items: center;
+    justify-content: center; font-size: 9px; font-weight: 800; color: var(--cream); flex-shrink: 0;
+  }
+  .accom-hotel-badge { background: var(--card3); border: 1px solid var(--sage); color: var(--sage); }
+  .accom-label { font-size: 11px; font-weight: 700; color: var(--cream); letter-spacing: 0.03em; }
+  .accom-type { font-size: 9px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .accom-btn {
+    display: block; text-align: center; padding: 7px; font-size: 9px; font-weight: 800;
+    letter-spacing: 0.25em; text-transform: uppercase; border: 1px solid var(--divider2);
+    color: var(--cream3); text-decoration: none; transition: all 0.2s;
+  }
+  .accom-btn:hover { background: var(--sage); color: var(--bg); border-color: var(--sage); }
+
+  /* ── CAR SECTION ── */
+  .car-note {
+    border: 1px solid var(--divider2); padding: 16px 20px; margin-bottom: 24px;
+    font-size: 11px; color: var(--cream3); line-height: 1.7; background: var(--card);
+  }
+  .car-note strong { color: var(--cream); }
+  .cars-stack { display: flex; flex-direction: column; gap: 2px; }
+  .car-row {
+    display: grid; grid-template-columns: 56px 1fr 140px;
+    border: 1px solid var(--divider); background: var(--card); transition: border-color 0.2s;
+    align-items: stretch;
+  }
+  .car-row:hover { border-color: var(--divider2); }
+  .car-num {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 800; color: rgba(122,184,138,0.18);
+    border-right: 1px solid var(--divider); background: var(--card2);
+  }
+  .car-body { padding: 18px 22px; }
+  .car-cat { font-size: 9px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--sage); margin-bottom: 3px; }
+  .car-name { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--cream); }
+  .car-make { font-size: 10px; color: var(--cream3); margin-bottom: 10px; }
+  .car-specs-row { display: flex; gap: 14px; flex-wrap: wrap; font-size: 10px; color: var(--cream3); margin-bottom: 8px; }
+  .car-spec strong { color: var(--cream); }
+  .car-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .car-tag {
+    font-size: 8px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 3px 7px; border: 1px solid;
+  }
+  .tag-ok { border-color: rgba(122,184,138,0.4); color: var(--sage); }
+  .tag-warn { border-color: rgba(200,160,80,0.4); color: #C8A050; }
+  .car-price-col {
+    border-left: 1px solid var(--divider); background: var(--card2);
+    display: flex; flex-direction: column; align-items: flex-end; justify-content: center;
+    padding: 18px 20px; text-align: right; gap: 2px;
+  }
+  .car-price-lbl { font-size: 8px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
+  .car-price { font-size: 32px; font-weight: 800; color: var(--cream); line-height: 1; }
+  .car-price sub { font-size: 14px; vertical-align: baseline; font-weight: 400; color: var(--cream3); }
+  .car-price-day { font-size: 9px; color: var(--cream3); }
+  .car-price-note { font-size: 9px; color: var(--muted); font-style: italic; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 2px solid var(--divider2); background: var(--bg2);
+    padding: 60px 32px; text-align: center;
+  }
+  .footer-title { font-size: clamp(28px, 5vw, 52px); font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase; color: var(--cream); }
+  .footer-tagline { font-size: 12px; color: var(--sage); letter-spacing: 0.2em; text-transform: uppercase; margin: 8px 0 24px; }
+  .footer-names {
+    display: flex; gap: 0; flex-wrap: wrap; justify-content: center;
+    border: 1px solid var(--divider2); width: fit-content; margin: 0 auto 28px;
+  }
+  .footer-name { padding: 10px 20px; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream2); border-right: 1px solid var(--divider2); }
+  .footer-name:last-child { border-right: none; }
+  .footer-route { font-size: 10px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; line-height: 2; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">DARGS <span>INTERNATIONAL</span></div>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#miami">Miami</a>
+      <a href="#jacksonville">Jacksonville</a>
+      <a href="#savannah">Savannah</a>
+      <a href="#hiltonhead">Hilton Head</a>
+      <a href="#smokies">Smokies</a>
+      <a href="#nashville">Nashville</a>
+      <a href="#cars">Vehicles</a>
+    </div>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="ticker-inner">
+    CHETWOOD &nbsp;·&nbsp; GOTHMOG &nbsp;·&nbsp; SLIM &nbsp;·&nbsp; DAVID &nbsp;·&nbsp; MACCERS &nbsp;·&nbsp; CURLEY &nbsp;·&nbsp; DARGS INTERNATIONAL 2026 &nbsp;·&nbsp; SIX MEN. ONE BAD IDEA. &nbsp;·&nbsp; CHETWOOD &nbsp;·&nbsp; GOTHMOG &nbsp;·&nbsp; SLIM &nbsp;·&nbsp; DAVID &nbsp;·&nbsp; MACCERS &nbsp;·&nbsp; CURLEY &nbsp;·&nbsp; WHAT COULD POSSIBLY GO WRONG &nbsp;·&nbsp;
+  </span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Dargs International · September 2026</div>
+    <h1 class="hero-h1">
+      Six Dargs<br>
+      <span class="line2">Invade<br>America</span>
+      <span class="line3">No Americans Were Consulted in the Making of This Trip</span>
+    </h1>
+    <p class="hero-sub">
+      <strong>22 September – 1 October 2026.</strong> Six men leave Britain.
+      Ten nights. Six destinations. ~960 miles. One vehicle (probably).
+      Zero regrets (almost certainly false).
+    </p>
+    <div class="names-strip">
+      <div class="name-cell">Chetwood</div>
+      <div class="name-cell">Gothmog</div>
+      <div class="name-cell">Slim</div>
+      <div class="name-cell">David</div>
+      <div class="name-cell">Maccers</div>
+      <div class="name-cell">Curley</div>
+    </div>
+    <div class="hero-stats">
+      <div class="h-stat"><div class="h-stat-val">6</div><div class="h-stat-key">Dargs</div></div>
+      <div class="h-stat"><div class="h-stat-val">10</div><div class="h-stat-key">Nights</div></div>
+      <div class="h-stat"><div class="h-stat-val">6</div><div class="h-stat-key">Stops</div></div>
+      <div class="h-stat"><div class="h-stat-val">~960</div><div class="h-stat-key">Miles</div></div>
+      <div class="h-stat"><div class="h-stat-val">0</div><div class="h-stat-key">Excuses</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTE BAR -->
+<div class="route-bar">
+  <div class="route-bar-inner">
+    <span class="r-stop">✈ Miami</span>
+    <span class="r-arrow">→</span>
+    <span class="r-stop">Jacksonville</span>
+    <span class="r-arrow">→</span>
+    <span class="r-stop">Savannah</span>
+    <span class="r-arrow">→</span>
+    <span class="r-stop">Hilton Head</span>
+    <span class="r-arrow">→</span>
+    <span class="r-stop">Smoky Mountains</span>
+    <span class="r-arrow">→</span>
+    <span class="r-stop">Nashville ✈</span>
+    <span class="r-note">22 Sep – 1 Oct · 6 guests · Unlimited mileage hopefully</span>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="page-section" id="overview">
+  <div class="sec-label"><div class="sec-label-num">0</div>Overview</div>
+  <div class="sec-title">THE <em>PLAN</em></div>
+  <div class="sec-sub">Subject to Gothmog not losing his passport, Slim not missing the flight, and Maccers deciding on a hotel.</div>
+  <div class="tl-grid">
+    <a href="#miami" class="tl-cell"><div class="tl-n">I</div><div class="tl-icon">🌴</div><div class="tl-name">Miami</div><div class="tl-date">22–23 Sep</div><div class="tl-nights">1 Night</div></a>
+    <a href="#jacksonville" class="tl-cell"><div class="tl-n">II</div><div class="tl-icon">🌉</div><div class="tl-name">Jacksonville</div><div class="tl-date">23–24 Sep</div><div class="tl-nights">1 Night</div></a>
+    <a href="#savannah" class="tl-cell"><div class="tl-n">III</div><div class="tl-icon">🌿</div><div class="tl-name">Savannah</div><div class="tl-date">24–26 Sep</div><div class="tl-nights">2 Nights</div></a>
+    <a href="#hiltonhead" class="tl-cell"><div class="tl-n">IV</div><div class="tl-icon">🏖️</div><div class="tl-name">Hilton Head</div><div class="tl-date">26–28 Sep</div><div class="tl-nights">2 Nights</div></a>
+    <a href="#smokies" class="tl-cell"><div class="tl-n">V</div><div class="tl-icon">🏔️</div><div class="tl-name">Smokies</div><div class="tl-date">28–29 Sep</div><div class="tl-nights">1 Night</div></a>
+    <a href="#nashville" class="tl-cell"><div class="tl-n">VI</div><div class="tl-icon">🎸</div><div class="tl-name">Nashville</div><div class="tl-date">29 Sep–1 Oct</div><div class="tl-nights">2 Nights</div></a>
+  </div>
+  <div class="tip" style="margin-top:24px">
+    <strong>Curley's Note on Timing —</strong> You've said Hilton Head is the highlight. It is. In late September it's peak gorgeous — warm ocean, no crowds, dolphins everywhere. <em>Strong suggestion:</em> make Jacksonville a quick drive-through lunch stop (2 hrs from Miami), bank that extra night at Hilton Head. Three nights there is actually reasonable. One night feels like a crime against beaches.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════ MIAMI ══════ -->
+<div class="drive-bar"><div class="drive-bar-inner"><span>✈️</span><span class="drive-from">Fly into Miami International</span><div class="drive-dot"></div><span class="drive-info">Arrival Day · Pick up vehicle · Argue about who sits in the middle</span></div></div>
+<div class="divider"></div>
+
+<section class="page-section" id="miami">
+  <div class="sec-label"><div class="sec-label-num">1</div>Stop One · 22–23 September</div>
+  <div class="sec-title"><em>MIAMI</em></div>
+  <div class="sec-sub">1 night · Hotel · 6 Dargs let loose in South Beach. What could go wrong.</div>
+  <div class="h-rule-sage"></div>
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">Things to Do That Aren't Just the Hotel Bar</div>
+      <div>
+        <div class="act-item"><div class="act-n">01</div><div><div class="act-name">South Beach & Ocean Drive</div><div class="act-desc">The iconic strip — Art Deco hotels, outdoor cafés, the beach boardwalk. Good luck getting six Dargs moving before noon though.</div></div></div>
+        <div class="act-item"><div class="act-n">02</div><div><div class="act-name">Wynwood Walls</div><div class="act-desc">World-famous outdoor street art district. Free entry, extraordinary murals, and a great place for Slim to pretend he knows about art.</div></div></div>
+        <div class="act-item"><div class="act-n">03</div><div><div class="act-name">Art Deco Historic District</div><div class="act-desc">800+ preserved 1920s-40s buildings — the largest Art Deco concentration on earth. Chetwood will definitely over-explain this to everyone.</div></div></div>
+        <div class="act-item"><div class="act-n">04</div><div><div class="act-name">Little Havana — Calle Ocho</div><div class="act-desc">Cuban coffee, cigars, street dominos. Maccers will somehow spend £80 on a cigar he doesn't smoke.</div></div></div>
+        <div class="act-item"><div class="act-n">05</div><div><div class="act-name">Sunset Biscayne Bay Boat Tour</div><div class="act-desc">Celebrity mansions, dolphins, sunset over the water. Ideal first-night activity before Gothmog drags everyone to a club at 2am.</div></div></div>
+        <div class="act-item"><div class="act-n">06</div><div><div class="act-name">Rooftop Bars & Nightlife</div><div class="act-desc">LIV, Broken Shaker, WATR Rooftop. Miami nights are legendary. David will be asleep by 11pm. The rest of you: good luck.</div></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Hotels · £100–200/Night Per Twin</div>
+      <div>
+        <div class="hotel-item">
+          <div><div class="hotel-name">Kimpton Angler's Hotel</div><div class="hotel-area">South Beach · Collins Ave · ★★★★</div></div>
+          <div><div class="hotel-price">£170</div><div class="hotel-price-sub">per night</div></div>
+          <div class="hotel-note">Boutique, 2 pools, steps from the beach. Best group atmosphere of the lot.</div>
+          <a href="https://www.booking.com/hotel/us/kimpton-anglers.html" target="_blank" rel="noopener noreferrer" class="hotel-btn">Search Booking.com →</a>
+        </div>
+        <div class="hotel-item">
+          <div><div class="hotel-name">Pestana CR7 Miami</div><div class="hotel-area">Ocean Drive · South Beach · ★★★★</div></div>
+          <div><div class="hotel-price">£155</div><div class="hotel-price-sub">per night</div></div>
+          <div class="hotel-note">Ronaldo's hotel. Rooftop pool on Ocean Drive. Slim will claim he knows CR7 personally.</div>
+          <a href="https://www.booking.com/hotel/us/pestana-cr7-miami.html" target="_blank" rel="noopener noreferrer" class="hotel-btn">Search Booking.com →</a>
+        </div>
+        <div class="hotel-item">
+          <div><div class="hotel-name">Hotel Breakwater</div><div class="hotel-area">Ocean Drive · South Beach · ★★★★</div></div>
+          <div><div class="hotel-price">£140</div><div class="hotel-price-sub">per night</div></div>
+          <div class="hotel-note">Iconic Art Deco façade on Ocean Drive. Rooftop bar. Great value for the address.</div>
+          <a href="https://www.booking.com/hotel/us/breakwater.html" target="_blank" rel="noopener noreferrer" class="hotel-btn">Search Booking.com →</a>
+        </div>
+        <div class="hotel-item">
+          <div><div class="hotel-name">The Catalina Hotel</div><div class="hotel-area">Collins Ave · South Beach · ★★★★</div></div>
+          <div><div class="hotel-price">£130</div><div class="hotel-price-sub">per night</div></div>
+          <div class="hotel-note">Free breakfast, rooftop bar, pool parties. Perfect for a group arriving jetlagged and needing feeding.</div>
+          <a href="https://www.booking.com/hotel/us/catalinahotel.html" target="_blank" rel="noopener noreferrer" class="hotel-btn">Search Booking.com →</a>
+        </div>
+        <div class="hotel-item">
+          <div><div class="hotel-name">Circa 39 Hotel</div><div class="hotel-area">Mid-Beach · Collins Ave · ★★★★</div></div>
+          <div><div class="hotel-price">£110</div><div class="hotel-price-sub">per night</div></div>
+          <div class="hotel-note">Boutique, great pool, walkable beach. Best value on the list. Curley will suggest this one.</div>
+          <a href="https://www.booking.com/hotel/us/circa39.html" target="_blank" rel="noopener noreferrer" class="hotel-btn">Search Booking.com →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+<div class="drive-bar"><div class="drive-bar-inner"><span>🚗</span><span class="drive-from">Miami → Jacksonville</span><div class="drive-dot"></div><span class="drive-info">~340 miles · Approx. 5 hrs · Maccers on aux cord. God help us.</span></div></div>
+<div class="divider"></div>
+
+<!-- ══════ JACKSONVILLE ══════ -->
+<section class="page-section" id="jacksonville">
+  <div class="sec-label"><div class="sec-label-num">2</div>Stop Two · 23–24 September</div>
+  <div class="sec-title"><em>JACKSONVILLE</em></div>
+  <div class="sec-sub">1 night · Airbnb or Hotel · 6 guests · Halfway to Savannah, basically.</div>
+  <div class="h-rule-sage"></div>
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">Things to Actually Do Here</div>
+      <div>
+        <div class="act-item"><div class="act-n">01</div><div><div class="act-name">Jacksonville Beach</div><div class="act-desc">Wide, clean Atlantic beach. Perfect post-5-hour-drive activity. Gothmog will immediately attempt to bodyboard.</div></div></div>
+        <div class="act-item"><div class="act-n">02</div><div><div class="act-name">Riverside Arts District</div><div class="act-desc">Galleries, restaurants, live music along the St. Johns River. David's type of evening. Everyone else will follow reluctantly.</div></div></div>
+        <div class="act-item"><div class="act-n">03</div><div><div class="act-name">St. Johns River Sunset Cruise</div><div class="act-desc">Florida's longest river, dolphins, golden hour. Someone will fall asleep on the boat. We all know who.</div></div></div>
+        <div class="act-item"><div class="act-n">04</div><div><div class="act-name">San Marco District Bars & Dining</div><div class="act-desc">Elegant neighbourhood with excellent restaurants and cocktail bars. Civilised. Slim will ruin it.</div></div></div>
+        <div class="act-item"><div class="act-n">05</div><div><div class="act-name">Cummer Museum of Art & Gardens</div><div class="act-desc">Stunning waterfront museum and Italianate gardens. Chetwood will insist. The others will pretend they're enjoying it.</div></div></div>
+        <div class="act-item"><div class="act-n">06</div><div><div class="act-name">Hemming Park Food Trucks</div><div class="act-desc">Downtown food trucks, craft beer, good vibes. Low effort, high reward. The Dargs natural habitat.</div></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Accommodation · 6 Guests · 1 Night · 23–24 Sep</div>
+      <div class="accom-note">All links open pre-filtered for 6 guests with the right dates. Click each to see photos and current price.</div>
+      <div class="accom-grid">
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">01</div><div><div class="accom-label">Airbnb Option 1</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/29708597?adults=6&check_in=2026-09-23&check_out=2026-09-24" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">02</div><div><div class="accom-label">Airbnb Option 2</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1493587125631574123?adults=6&check_in=2026-09-23&check_out=2026-09-24" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">03</div><div><div class="accom-label">Airbnb Option 3</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/46832994?adults=6&check_in=2026-09-23&check_out=2026-09-24" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">04</div><div><div class="accom-label">Airbnb Option 4</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1690938354023274750?adults=6&check_in=2026-09-23&check_out=2026-09-24" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">05</div><div><div class="accom-label">Airbnb Option 5</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1309729411011218733?adults=6&check_in=2026-09-23&check_out=2026-09-24" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">06</div><div><div class="accom-label">Airbnb Option 6</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1194104539680040271?adults=6&check_in=2026-09-23&check_out=2026-09-24" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">07</div><div><div class="accom-label">Airbnb Option 7</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/610880660654710566?adults=6&check_in=2026-09-23&check_out=2026-09-24" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">08</div><div><div class="accom-label">Airbnb Option 8</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1699375406087888245?adults=6&check_in=2026-09-23&check_out=2026-09-24" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">09</div><div><div class="accom-label">Airbnb Option 9</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/51267213?adults=6&check_in=2026-09-23&check_out=2026-09-24" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">10</div><div><div class="accom-label">Airbnb Option 10</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/569812347947733709?adults=6&check_in=2026-09-23&check_out=2026-09-24" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge accom-hotel-badge">H1</div><div><div class="accom-label">Hampton Inn I-95 Central</div><div class="accom-type">Hotel · Booking.com</div></div></div><a class="accom-btn" href="https://www.booking.com/hotel/us/hampton-inn-jacksonville-i-95-central.en-gb.html" target="_blank" rel="noopener noreferrer">View Hotel →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge accom-hotel-badge">H2</div><div><div class="accom-label">Hyatt Regency Riverfront</div><div class="accom-type">Hotel · Booking.com</div></div></div><a class="accom-btn" href="https://www.booking.com/hotel/us/hyatt-regency-jacksonville-riverfront.en-gb.html" target="_blank" rel="noopener noreferrer">View Hotel →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+<div class="drive-bar"><div class="drive-bar-inner"><span>🚗</span><span class="drive-from">Jacksonville → Savannah</span><div class="drive-dot"></div><span class="drive-info">~140 miles · Approx. 2 hrs · Easy. Slim driving. Pray.</span></div></div>
+<div class="divider"></div>
+
+<!-- ══════ SAVANNAH ══════ -->
+<section class="page-section" id="savannah">
+  <div class="sec-label"><div class="sec-label-num">3</div>Stop Three · 24–26 September</div>
+  <div class="sec-title"><em>SAVANNAH</em></div>
+  <div class="sec-sub">2 nights · Airbnb · 6 guests · America's most haunted city. Right up Gothmog's street.</div>
+  <div class="h-rule-sage"></div>
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">The Highlights</div>
+      <div>
+        <div class="act-item"><div class="act-n">01</div><div><div class="act-name">The 22 Historic Squares</div><div class="act-desc">One of America's most beautiful cities on foot. Spanish moss, ancient oaks, gorgeous architecture. Even Maccers will admit it's lovely.</div></div></div>
+        <div class="act-item"><div class="act-n">02</div><div><div class="act-name">Forsyth Park</div><div class="act-desc">Iconic fountain, Saturday farmers market. David's kind of morning. Everyone else arrives two hours later with coffees.</div></div></div>
+        <div class="act-item"><div class="act-n">03</div><div><div class="act-name">Ghost Tour (Evening)</div><div class="act-desc">Savannah is one of America's most haunted cities. Gothmog has already looked this up. You're all doing this whether you like it or not.</div></div></div>
+        <div class="act-item"><div class="act-n">04</div><div><div class="act-name">River Street & Riverboat Cruise</div><div class="act-desc">Cobblestone waterfront, bars, sunset cruise. Classic. Chetwood will bring a book and read it on the boat deck.</div></div></div>
+        <div class="act-item"><div class="act-n">05</div><div><div class="act-name">Tybee Island Beach</div><div class="act-desc">30-min drive — brilliant beach, lighthouse you can climb, great seafood shacks. Slim's second attempt at surfing.</div></div></div>
+        <div class="act-item"><div class="act-n">06</div><div><div class="act-name">Dolphin & Wildlife Cruise</div><div class="act-desc">Guided eco-cruise through the coastal marshes. Dolphins virtually guaranteed. Curley has already done research on this one.</div></div></div>
+        <div class="act-item"><div class="act-n">07</div><div><div class="act-name">Bonaventure Cemetery</div><div class="act-desc">Hauntingly beautiful Victorian cemetery — featured in Midnight in the Garden of Good and Evil. Genuinely stunning in an unsettling way.</div></div></div>
+        <div class="act-item"><div class="act-n">08</div><div><div class="act-name">Southern Dining</div><div class="act-desc">The Olde Pink House (1771), Mrs. Wilkes Dining Room — legendary Southern cooking. This is not the night to be fussy, David.</div></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Accommodation · 6 Guests · 2 Nights · 24–26 Sep</div>
+      <div class="accom-note">All links pre-filtered for 6 guests, 24–26 Sep. Click to see photos and live pricing.</div>
+      <div class="accom-grid">
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">01</div><div><div class="accom-label">Airbnb Option 1</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/766806947333977454?adults=6&check_in=2026-09-24&check_out=2026-09-26" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">02</div><div><div class="accom-label">Airbnb Option 2</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/642083688123089044?adults=6&check_in=2026-09-24&check_out=2026-09-26" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">03</div><div><div class="accom-label">Airbnb Option 3</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1456674744397176426?adults=6&check_in=2026-09-24&check_out=2026-09-26" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">04</div><div><div class="accom-label">Airbnb Option 4</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/51960725?adults=6&check_in=2026-09-24&check_out=2026-09-26" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">05</div><div><div class="accom-label">Airbnb Option 5</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/818766652327133507?adults=6&check_in=2026-09-24&check_out=2026-09-26" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">06</div><div><div class="accom-label">Airbnb Option 6</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1126038065684347591?adults=6&check_in=2026-09-24&check_out=2026-09-26" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">07</div><div><div class="accom-label">Airbnb Option 7</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1468268266325404694?adults=6&check_in=2026-09-24&check_out=2026-09-26" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">08</div><div><div class="accom-label">Airbnb Option 8</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/27466922?adults=6&check_in=2026-09-24&check_out=2026-09-26" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">09</div><div><div class="accom-label">Airbnb Option 9</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1468269380168185700?adults=6&check_in=2026-09-24&check_out=2026-09-26" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">10</div><div><div class="accom-label">Airbnb Option 10</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1231917862021740428?adults=6&check_in=2026-09-24&check_out=2026-09-26" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">11</div><div><div class="accom-label">Airbnb Option 11</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/691437358952335527?adults=6&check_in=2026-09-24&check_out=2026-09-26" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">12</div><div><div class="accom-label">Airbnb Option 12</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1227621285714331480?adults=6&check_in=2026-09-24&check_out=2026-09-26" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">13</div><div><div class="accom-label">Airbnb Option 13</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/923930773449108613?adults=6&check_in=2026-09-24&check_out=2026-09-26" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+<div class="drive-bar"><div class="drive-bar-inner"><span>🚗</span><span class="drive-from">Savannah → Hilton Head Island</span><div class="drive-dot"></div><span class="drive-info">~45 miles · Approx. 45 min · Shortest drive of the trip. Still too long for Gothmog.</span></div></div>
+<div class="divider"></div>
+
+<!-- ══════ HILTON HEAD ══════ -->
+<section class="page-section" id="hiltonhead">
+  <div class="sec-label"><div class="sec-label-num">4</div>Stop Four · 26–28 September · ★ THE BIG ONE</div>
+  <div class="sec-title"><em>HILTON HEAD</em></div>
+  <div class="sec-sub">2 nights (should be 3) · Airbnb · 6 guests · Beaches, boats, golf, dolphins. The Dargs in their element.</div>
+  <div class="h-rule-sage"></div>
+  <div class="tip">
+    <strong>Heads up —</strong> September on Hilton Head is as good as it gets. Ocean's still warm (82°F / 28°C), summer crowds gone, dolphins everywhere. With a pontoon boat rental you can basically do a full day's exploring yourselves — creeks, sandbars, the lot. <em>Strongly recommend adding a third night here</em> — the beaches alone justify it and it's only 45 minutes from Savannah.
+  </div>
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">The Activities — Don't Waste This Stop</div>
+      <div>
+        <div class="act-item"><div class="act-n">01</div><div><div class="act-name">Rent a Pontoon Boat</div><div class="act-desc">H2O Sports or Outside Hilton Head — hire a pontoon for the day, captain it yourselves around the waterways and sandbars. Absolute highlight of the trip. Maccers will somehow capsize it.</div></div></div>
+        <div class="act-item"><div class="act-n">02</div><div><div class="act-name">Golf — Harbour Town Links</div><div class="act-desc">One of the most famous golf courses in America — home of the RBC Heritage PGA Tour event. Sea Pines Resort has multiple world-class layouts. Chetwood has been talking about this since February.</div></div></div>
+        <div class="act-item"><div class="act-n">03</div><div><div class="act-name">Dolphin Watching Cruise</div><div class="act-desc">Guided eco-cruise — dolphins are practically guaranteed. Even Slim, who claims to hate dolphins, will love this.</div></div></div>
+        <div class="act-item"><div class="act-n">04</div><div><div class="act-name">Coligny Beach</div><div class="act-desc">The island's main beach — wide, gorgeous, clean. Spend a full afternoon here. Gothmog will burn immediately.</div></div></div>
+        <div class="act-item"><div class="act-n">05</div><div><div class="act-name">Cycling the Island</div><div class="act-desc">40+ miles of bike paths through maritime forest and along the shore. Rent bikes for a morning. David will be suspiciously good at this.</div></div></div>
+        <div class="act-item"><div class="act-n">06</div><div><div class="act-name">Sunset Kayak Tour</div><div class="act-desc">Through Broad Creek and the sea marshes at golden hour. If you do one organised activity on this trip, make it this.</div></div></div>
+        <div class="act-item"><div class="act-n">07</div><div><div class="act-name">Harbour Town Lighthouse</div><div class="act-desc">The iconic red and white striped lighthouse at Sea Pines — climb it for the views, browse the marina. Classic photo spot.</div></div></div>
+        <div class="act-item"><div class="act-n">08</div><div><div class="act-name">Skull Creek Boathouse Dining</div><div class="act-desc">Best waterfront restaurant on the island — fresh shrimp, crab, oysters on the water at sunset. Book ahead. Worth it.</div></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Accommodation · 6 Guests · 2 Nights · 26–28 Sep</div>
+      <div class="accom-note">All links pre-filtered for 6 guests, 26–28 Sep. Click each to view photos and live pricing.</div>
+      <div class="accom-grid">
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">01</div><div><div class="accom-label">Airbnb Option 1</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/821746952421669219?adults=6&check_in=2026-09-26&check_out=2026-09-28" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">02</div><div><div class="accom-label">Airbnb Option 2</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1646480573111056333?adults=6&check_in=2026-09-26&check_out=2026-09-28" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">03</div><div><div class="accom-label">Airbnb Option 3</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/766688877658910025?adults=6&check_in=2026-09-26&check_out=2026-09-28" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">04</div><div><div class="accom-label">Airbnb Option 4</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1653040218506406104?adults=6&check_in=2026-09-26&check_out=2026-09-28" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">05</div><div><div class="accom-label">Airbnb Option 5</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/21135409?adults=6&check_in=2026-09-26&check_out=2026-09-28" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">06</div><div><div class="accom-label">Airbnb Option 6</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1653040628870727836?adults=6&check_in=2026-09-26&check_out=2026-09-28" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">07</div><div><div class="accom-label">Airbnb Option 7</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/11356323?adults=6&check_in=2026-09-26&check_out=2026-09-28" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">08</div><div><div class="accom-label">Airbnb Option 8</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/19764705?adults=6&check_in=2026-09-26&check_out=2026-09-28" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">09</div><div><div class="accom-label">Airbnb Option 9</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/47256128?adults=6&check_in=2026-09-26&check_out=2026-09-28" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+<div class="drive-bar"><div class="drive-bar-inner"><span>🚗</span><span class="drive-from">Hilton Head → Smoky Mountains</span><div class="drive-dot"></div><span class="drive-info">~250 miles · Approx. 4 hrs · Maccers on aux again. Pray harder.</span></div></div>
+<div class="divider"></div>
+
+<!-- ══════ SMOKIES ══════ -->
+<section class="page-section" id="smokies">
+  <div class="sec-label"><div class="sec-label-num">5</div>Stop Five · 28–29 September</div>
+  <div class="sec-title"><em>SMOKY MOUNTAINS</em></div>
+  <div class="sec-sub">1 night · Mountain Cabin / Airbnb · Gatlinburg, TN · America's most visited national park. Absolutely free.</div>
+  <div class="h-rule-sage"></div>
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">What To Do In the Mountains</div>
+      <div>
+        <div class="act-item"><div class="act-n">01</div><div><div class="act-name">Great Smoky Mountains National Park</div><div class="act-desc">Most visited national park in the US. FREE. 800+ miles of trails, waterfalls, wildlife drives, endless views. Gothmog will attempt a summit in flip-flops.</div></div></div>
+        <div class="act-item"><div class="act-n">02</div><div><div class="act-name">Gatlinburg SkyBridge</div><div class="act-desc">North America's longest pedestrian suspension bridge — 680 feet above the valley. Breathtaking. Slim will absolutely bottle halfway across.</div></div></div>
+        <div class="act-item"><div class="act-n">03</div><div><div class="act-name">Ole Smoky Moonshine Distillery</div><div class="act-desc">America's most visited distillery, in the middle of downtown Gatlinburg. Moonshine tasting flights. This is happening regardless of what David thinks.</div></div></div>
+        <div class="act-item"><div class="act-n">04</div><div><div class="act-name">Dollywood — Pigeon Forge</div><div class="act-desc">World-class theme park 15 minutes away. Lightning Rod is the world's fastest wooden roller coaster. Nobody will admit they're scared. They're all scared.</div></div></div>
+        <div class="act-item"><div class="act-n">05</div><div><div class="act-name">White Water Rafting — Pigeon River</div><div class="act-desc">Class III–IV rapids with multiple local operators. Excellent group activity. Chetwood will read the safety briefing very carefully.</div></div></div>
+        <div class="act-item"><div class="act-n">06</div><div><div class="act-name">Cades Cove Wildlife Drive</div><div class="act-desc">11-mile loop — black bears, deer, wild turkeys in the open valley. Maccers will try to feed a bear. Someone stop him.</div></div></div>
+        <div class="act-item"><div class="act-n">07</div><div><div class="act-name">Alum Cave Trail</div><div class="act-desc">Most popular hike in the Smokies — 4.4 miles, spectacular bluffs, ancient forest. David will finish first and look completely fine. Annoying.</div></div></div>
+        <div class="act-item"><div class="act-n">08</div><div><div class="act-name">Anakeesta Mountaintop Park</div><div class="act-desc">Aerial tram to a mountaintop village — tree canopy walk, zip-lines, fire pits, mountain-view restaurant. Great last night before Nashville.</div></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Accommodation · 6 Guests · 1 Night · 28–29 Sep</div>
+      <div class="accom-note">Mountain cabin Airbnbs near Gatlinburg. Genuinely brilliant experience — hot tub on a cabin deck in the Smokies beats any hotel.</div>
+      <div class="accom-grid">
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">01</div><div><div class="accom-label">Airbnb Option 1</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/928377466946815261?adults=6&check_in=2026-09-28&check_out=2026-09-29" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">02</div><div><div class="accom-label">Airbnb Option 2</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1685718878229206225?adults=6&check_in=2026-09-28&check_out=2026-09-29" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">03</div><div><div class="accom-label">Airbnb Option 3</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1665259773871032687?adults=6&check_in=2026-09-28&check_out=2026-09-29" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">04</div><div><div class="accom-label">Airbnb Option 4</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1688593344688135880?adults=6&check_in=2026-09-28&check_out=2026-09-29" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">05</div><div><div class="accom-label">Airbnb Option 5</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1691434975123276908?adults=6&check_in=2026-09-28&check_out=2026-09-29" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">06</div><div><div class="accom-label">Airbnb Option 6</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/904256368527321542?adults=6&check_in=2026-09-28&check_out=2026-09-29" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">07</div><div><div class="accom-label">Airbnb Option 7</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/43348711?adults=6&check_in=2026-09-28&check_out=2026-09-29" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">08</div><div><div class="accom-label">Airbnb Option 8</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/50732360?adults=6&check_in=2026-09-28&check_out=2026-09-29" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">09</div><div><div class="accom-label">Airbnb Option 9</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1067450834130410607?adults=6&check_in=2026-09-28&check_out=2026-09-29" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">10</div><div><div class="accom-label">Airbnb Option 10</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1579922265811149665?adults=6&check_in=2026-09-28&check_out=2026-09-29" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">11</div><div><div class="accom-label">Airbnb Option 11</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/50330045?adults=6&check_in=2026-09-28&check_out=2026-09-29" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">12</div><div><div class="accom-label">Airbnb Option 12</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/555991877572475699?adults=6&check_in=2026-09-28&check_out=2026-09-29" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">13</div><div><div class="accom-label">Airbnb Option 13</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/47427930?adults=6&check_in=2026-09-28&check_out=2026-09-29" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+<div class="drive-bar"><div class="drive-bar-inner"><span>🚗</span><span class="drive-from">Smoky Mountains → Nashville</span><div class="drive-dot"></div><span class="drive-info">~180 miles · Approx. 3 hrs · Final drive. Everyone starts claiming they want country music on. Nobody actually knows any.</span></div></div>
+<div class="divider"></div>
+
+<!-- ══════ NASHVILLE ══════ -->
+<section class="page-section" id="nashville">
+  <div class="sec-label"><div class="sec-label-num">6</div>Stop Six · 29 Sep – 1 Oct · ✈ FLY HOME</div>
+  <div class="sec-title"><em>NASHVILLE</em></div>
+  <div class="sec-sub">2 nights · Airbnb · Firing ranges. Honky-tonks. Jack Daniel's. Hot chicken. The Dargs farewell tour.</div>
+  <div class="h-rule-sage"></div>
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">The Grand Finale Activities</div>
+      <div>
+        <div class="act-item"><div class="act-n">01</div><div><div class="act-name">Broadway Honky-Tonks</div><div class="act-desc">Tootsies, Robert's Western World, Legends Corner — live music from noon to 3am, never a cover charge. Non-negotiable. All six Dargs, immediately upon arrival.</div></div></div>
+        <div class="act-item"><div class="act-n">02</div><div><div class="act-name">Royal Range USA — Firing Range</div><div class="act-desc">Southeast's largest indoor range — 40,000 sq ft, 31 lanes, machine guns, rifles, pistols. Group packages available. Gothmog has been looking forward to this since day one of planning.</div></div></div>
+        <div class="act-item"><div class="act-n">03</div><div><div class="act-name">Country Music Hall of Fame + RCA Studio B</div><div class="act-desc">Where Elvis and Dolly recorded. The studio tour is genuinely excellent. David will actually read every single information panel. Everyone else: 45 minutes.</div></div></div>
+        <div class="act-item"><div class="act-n">04</div><div><div class="act-name">Jack Daniel's Distillery Tour</div><div class="act-desc">One hour south in Lynchburg, TN — the world's most famous whiskey, made in the only dry county in Tennessee. The irony. The whiskey. Both excellent.</div></div></div>
+        <div class="act-item"><div class="act-n">05</div><div><div class="act-name">Grand Ole Opry</div><div class="act-desc">The historic home of country music, live on Friday/Saturday nights. Book ahead. Slim will pretend he came here specifically for this. He did not.</div></div></div>
+        <div class="act-item"><div class="act-n">06</div><div><div class="act-name">Nashville Hot Chicken</div><div class="act-desc">Prince's Hot Chicken (the 1945 original) or Hattie B's. Order it hotter than you think you can handle. This is a Dargs mandatory challenge.</div></div></div>
+        <div class="act-item"><div class="act-n">07</div><div><div class="act-name">White Limozeen Rooftop Bar</div><div class="act-desc">Retro-pink rooftop atop Graduate Nashville. The most-photographed spot in the city. Maccers will make everyone take the same photo twelve times.</div></div></div>
+        <div class="act-item"><div class="act-n">08</div><div><div class="act-name">Printer's Alley</div><div class="act-desc">Nashville's historic cocktail alley — intimate bars, jazz, actual locals. The final night deserves something beyond the tourist strip. Finish here.</div></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Accommodation · 6 Guests · 2 Nights · 29 Sep–1 Oct</div>
+      <div class="accom-note">All links pre-filtered for 6 guests, 29 Sep – 1 Oct. Last stop — pick somewhere good.</div>
+      <div class="accom-grid">
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">01</div><div><div class="accom-label">Airbnb Option 1</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1471704518647579930?adults=6&check_in=2026-09-29&check_out=2026-10-01" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">02</div><div><div class="accom-label">Airbnb Option 2</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1344283807554081467?adults=6&check_in=2026-09-29&check_out=2026-10-01" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">03</div><div><div class="accom-label">Airbnb Option 3</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/554287623124043768?adults=6&check_in=2026-09-29&check_out=2026-10-01" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">04</div><div><div class="accom-label">Airbnb Option 4</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1374570455257502417?adults=6&check_in=2026-09-29&check_out=2026-10-01" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">05</div><div><div class="accom-label">Airbnb Option 5</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1186300222980995037?adults=6&check_in=2026-09-29&check_out=2026-10-01" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">06</div><div><div class="accom-label">Airbnb Option 6</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/615437585465249966?adults=6&check_in=2026-09-29&check_out=2026-10-01" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">07</div><div><div class="accom-label">Airbnb Option 7</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1348733702707262053?adults=6&check_in=2026-09-29&check_out=2026-10-01" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">08</div><div><div class="accom-label">Airbnb Option 8</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1400716460128647588?adults=6&check_in=2026-09-29&check_out=2026-10-01" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">09</div><div><div class="accom-label">Airbnb Option 9</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1261212592859308250?adults=6&check_in=2026-09-29&check_out=2026-10-01" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+        <div class="accom-card"><div class="accom-top"><div class="accom-badge">10</div><div><div class="accom-label">Airbnb Option 10</div><div class="accom-type">Airbnb · 6 Guests</div></div></div><a class="accom-btn" href="https://www.airbnb.co.uk/rooms/1176865015215845522?adults=6&check_in=2026-09-29&check_out=2026-10-01" target="_blank" rel="noopener noreferrer">View Listing →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════ VEHICLES ══════ -->
+<section class="page-section" id="cars">
+  <div class="sec-label"><div class="sec-label-num">+</div>Transport</div>
+  <div class="sec-title">THE <em>VEHICLE</em></div>
+  <div class="sec-sub">11 options. Ordered highest to lowest price. Six of you. Choose wisely. Maccers will want the Mustang.</div>
+  <div class="h-rule-sage"></div>
+  <div class="car-note">
+    <strong>⚠ Capacity alert:</strong> The Ford Mustangs (options 1 & 6), Toyota Tacoma (10) and Nissan Versa (11) only fit 4–5 people — you'd need two vehicles. For a group of 6, the <strong>Chevrolet Suburban, Ford Expedition, BMW X7, Chrysler Pacifica</strong> and <strong>Ford Transit Van</strong> all seat 7 comfortably. USD prices converted at approx £0.79/$1.
+  </div>
+  <div class="cars-stack">
+
+    <div class="car-row">
+      <div class="car-num">1</div>
+      <div class="car-body">
+        <div class="car-cat">Fullsize Convertible</div>
+        <div class="car-name">Ford Mustang Convertible</div>
+        <div class="car-make">Or similar model</div>
+        <div class="car-specs-row"><span>👤 <strong>4 seats</strong></span><span>🧳 <strong>3 bags</strong></span><span>£182.59 / day</span><span>Protection included</span><span>Unlimited miles</span></div>
+        <div class="car-tags"><span class="car-tag tag-warn">⚠ 4 Seats Only — Needs 2 Cars</span><span class="car-tag tag-ok">Unlimited Miles</span></div>
+      </div>
+      <div class="car-price-col"><div class="car-price-lbl">Total</div><div class="car-price">£1,460<sub>.70</sub></div><div class="car-price-day">£182.59 / day</div></div>
+    </div>
+
+    <div class="car-row">
+      <div class="car-num">2</div>
+      <div class="car-body">
+        <div class="car-cat">Extra Large 2WD SUV</div>
+        <div class="car-name">Chevrolet Suburban</div>
+        <div class="car-make">Or similar model</div>
+        <div class="car-specs-row"><span>👤 <strong>7 seats</strong></span><span>🧳 <strong>6 bags</strong></span><span>⛽ 19 MPG</span></div>
+        <div class="car-tags"><span class="car-tag tag-ok">✓ Fits All 6 Dargs</span><span class="car-tag tag-ok">Max Luggage Space</span></div>
+      </div>
+      <div class="car-price-col"><div class="car-price-lbl">Total (USD)</div><div class="car-price">$1,323<sub> USD</sub></div><div class="car-price-note">≈ £1,045 GBP</div></div>
+    </div>
+
+    <div class="car-row">
+      <div class="car-num">3</div>
+      <div class="car-body">
+        <div class="car-cat">People Carrier / Van · Europcar</div>
+        <div class="car-name">Ford Transit 12-Passenger Van</div>
+        <div class="car-make">Or similar · Europcar</div>
+        <div class="car-specs-row"><span>👤 <strong>12 seats</strong></span><span>4 doors</span><span>Air Con</span><span>Unlimited Mileage</span></div>
+        <div class="car-specs-row" style="font-size:9px;color:var(--muted)">Includes one-way fee £243.20 · Local Tax · Airport Surcharge</div>
+        <div class="car-tags"><span class="car-tag tag-ok">✓ Fits All 6 Dargs</span><span class="car-tag tag-ok">Unlimited Mileage</span></div>
+      </div>
+      <div class="car-price-col"><div class="car-price-lbl">Pay Online</div><div class="car-price">£908<sub>.19</sub></div><div class="car-price-note">£974.43 on collection</div></div>
+    </div>
+
+    <div class="car-row">
+      <div class="car-num">4</div>
+      <div class="car-body">
+        <div class="car-cat">Large 2WD SUV</div>
+        <div class="car-name">Ford Expedition</div>
+        <div class="car-make">Or similar model</div>
+        <div class="car-specs-row"><span>👤 <strong>7 seats</strong></span><span>🧳 <strong>4 bags</strong></span><span>⛽ 19 MPG</span></div>
+        <div class="car-tags"><span class="car-tag tag-ok">✓ Fits All 6 Dargs</span></div>
+      </div>
+      <div class="car-price-col"><div class="car-price-lbl">Total (USD)</div><div class="car-price">$1,145<sub> USD</sub></div><div class="car-price-note">≈ £905 GBP</div></div>
+    </div>
+
+    <div class="car-row">
+      <div class="car-num">5</div>
+      <div class="car-body">
+        <div class="car-cat">Luxury 7 Passenger SUV</div>
+        <div class="car-name">Volvo XC90 Hybrid Prestige</div>
+        <div class="car-make">Or similar model</div>
+        <div class="car-specs-row"><span>👤 <strong>7 seats</strong></span><span>🧳 <strong>3 bags</strong></span><span>⛽ 24 MPG</span></div>
+        <div class="car-tags"><span class="car-tag tag-ok">✓ Fits All 6 Dargs</span><span class="car-tag tag-ok">Most Fuel Efficient</span></div>
+      </div>
+      <div class="car-price-col"><div class="car-price-lbl">Total (USD)</div><div class="car-price">$1,145<sub> USD</sub></div><div class="car-price-note">≈ £905 GBP</div></div>
+    </div>
+
+    <div class="car-row">
+      <div class="car-num">6</div>
+      <div class="car-body">
+        <div class="car-cat">Convertible · Europcar</div>
+        <div class="car-name">Ford Mustang Convertible</div>
+        <div class="car-make">Or similar · Europcar</div>
+        <div class="car-specs-row"><span>👤 <strong>4 seats</strong></span><span>🧳 <strong>2 bags</strong></span><span>Automatic</span></div>
+        <div class="car-tags"><span class="car-tag tag-warn">⚠ 4 Seats Only — Needs 2 Cars</span></div>
+      </div>
+      <div class="car-price-col"><div class="car-price-lbl">Total</div><div class="car-price">£847<sub>.22</sub></div></div>
+    </div>
+
+    <div class="car-row">
+      <div class="car-num">7</div>
+      <div class="car-body">
+        <div class="car-cat">Premium SUV · Premium Brand</div>
+        <div class="car-name">BMW X7</div>
+        <div class="car-make">Premium Brand · GPS Included</div>
+        <div class="car-specs-row"><span>👤 <strong>7 seats (5+2)</strong></span><span>🧳 <strong>4 bags</strong></span><span>🗺️ GPS</span><span>1,400 miles included</span></div>
+        <div class="car-specs-row" style="font-size:9px;color:var(--muted)">Rear 2 seats fold flat for extra luggage space</div>
+        <div class="car-tags"><span class="car-tag tag-ok">✓ Fits All 6 Dargs</span><span class="car-tag tag-ok">GPS Included</span><span class="car-tag tag-ok">Protection Included</span></div>
+      </div>
+      <div class="car-price-col"><div class="car-price-lbl">Total</div><div class="car-price">£842<sub>.37</sub></div><div class="car-price-day">£105.30 / day</div></div>
+    </div>
+
+    <div class="car-row">
+      <div class="car-num">8</div>
+      <div class="car-body">
+        <div class="car-cat">Large SUV · Europcar</div>
+        <div class="car-name">Ford Expedition Max</div>
+        <div class="car-make">Or similar · Europcar</div>
+        <div class="car-specs-row"><span>👤 <strong>7 seats</strong></span><span>4 doors</span><span>Automatic</span><span>Air Con</span><span>Unlimited Mileage</span></div>
+        <div class="car-specs-row" style="font-size:9px;color:var(--muted)">Includes one-way fee £243.20 · Local Tax · Airport Surcharge</div>
+        <div class="car-tags"><span class="car-tag tag-ok">✓ Fits All 6 Dargs</span><span class="car-tag tag-ok">Unlimited Mileage</span></div>
+      </div>
+      <div class="car-price-col"><div class="car-price-lbl">Pay Online</div><div class="car-price">£785<sub>.70</sub></div><div class="car-price-note">£839.43 on collection</div></div>
+    </div>
+
+    <div class="car-row">
+      <div class="car-num">9</div>
+      <div class="car-body">
+        <div class="car-cat">7 Passenger People Carrier</div>
+        <div class="car-name">Chrysler Pacifica</div>
+        <div class="car-make">Or similar model</div>
+        <div class="car-specs-row"><span>👤 <strong>7 seats</strong></span><span>🧳 <strong>5 bags</strong></span><span>Automatic</span></div>
+        <div class="car-tags"><span class="car-tag tag-ok">✓ Fits All 6 Dargs</span><span class="car-tag tag-ok">Most Bags</span></div>
+      </div>
+      <div class="car-price-col"><div class="car-price-lbl">Total</div><div class="car-price">£749<sub>.82</sub></div></div>
+    </div>
+
+    <div class="car-row">
+      <div class="car-num">10</div>
+      <div class="car-body">
+        <div class="car-cat">Standard Pick-Up Truck</div>
+        <div class="car-name">Toyota Tacoma</div>
+        <div class="car-make">Or similar model</div>
+        <div class="car-specs-row"><span>👤 <strong>5 seats</strong></span><span>🧳 <strong>4 bags</strong></span><span>Protection included</span><span>Unlimited miles</span></div>
+        <div class="car-tags"><span class="car-tag tag-warn">⚠ 5 Seats Only — Needs 2 Cars</span></div>
+      </div>
+      <div class="car-price-col"><div class="car-price-lbl">Total</div><div class="car-price">£702<sub>.43</sub></div><div class="car-price-day">£87.81 / day</div></div>
+    </div>
+
+    <div class="car-row">
+      <div class="car-num">11</div>
+      <div class="car-body">
+        <div class="car-cat">Compact Sedan</div>
+        <div class="car-name">Nissan Versa</div>
+        <div class="car-make">Or similar model</div>
+        <div class="car-specs-row"><span>👤 <strong>5 seats</strong></span><span>🧳 <strong>3 bags</strong></span><span>Protection included</span><span>Unlimited miles</span></div>
+        <div class="car-tags"><span class="car-tag tag-warn">⚠ 5 Seats Only — Needs 2 Cars</span></div>
+      </div>
+      <div class="car-price-col"><div class="car-price-lbl">Total</div><div class="car-price">£664<sub>.76</sub></div><div class="car-price-day">£83.10 / day</div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-title">Dargs International</div>
+  <div class="footer-tagline">Six Men. One Bad Idea. September 2026.</div>
+  <div class="footer-names">
+    <div class="footer-name">Chetwood</div>
+    <div class="footer-name">Gothmog</div>
+    <div class="footer-name">Slim</div>
+    <div class="footer-name">David</div>
+    <div class="footer-name">Maccers</div>
+    <div class="footer-name">Curley</div>
+  </div>
+  <div class="footer-route">
+    Miami · Jacksonville · Savannah · Hilton Head · Smoky Mountains · Nashville<br>
+    22 September – 1 October 2026 · ~960 Miles · 10 Nights · 0 Regrets (Target)
+  </div>
+</footer>
+
+</body>
+</html>
